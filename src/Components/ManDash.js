@@ -20,7 +20,23 @@ const ManagerProfile = () => {
         "manager": null,
         "inverseManager": [],
         "leaves": []
-    })
+    });
+    /*const [emp, setEmp]=useState({
+        "empid": 0,
+  "empname": "string",
+  "empemail": "user@example.com",
+  "department": "string",
+  "empaddress": "string",
+  "phnumber": "string",
+  "empusername": "string",
+  "emppassword": "string",
+  "leaveinhand": 0,
+  "managerid": 0,
+  "inverseManager": [
+    null
+  ],
+  "leaves": null
+    });*/
     const [emps, setEmps] = useState([]);
     const [leaves, setLeaves] = useState([]);
     const [showEmps, setShowEmps] = useState(false);
@@ -93,9 +109,39 @@ const ManagerProfile = () => {
 
     const handleApprove = (leave) => {
 
+        /*if(leave.leaveinhand<=0){
+            alert("don't have enough balance");
+            return;
+        }*/
+        const {empid}=leave;
+        var employee = {};
+        for(var i=0; i< emps.length;i++){
+            if(emps[i].empid== empid)
+            {
+                 employee=emps[i];
+                break;
+            }
+
+        }
+        fetch(`http://localhost:23040/api/Employees/${empid}`,{
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({...employee,"leaveinhand":employee.leaveinhand-leave.noofdays})
+        })
+        .then(res => res.json())
+            .then(res => {
+                
+               // alert("HIIIII");
+            })
+            .catch(err => console.log(err));
+        
         var leaveObject = {
             ...leave,
-            "leavestatus": "approved"
+            "leavestatus": "approved",
+           // "leaveinhand": leave.leaveinhand-leave.noofdays
         }
         const { leaveid } = leave;
        

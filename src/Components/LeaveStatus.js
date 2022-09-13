@@ -50,11 +50,14 @@ const LeaveStatus = () => {
               
               
           }}>
+              <h2 style={{textAlign:"center"}}>Leave Status</h2>
+              <br/>
             <table className="table table-striped" >
                 <thead>
                     <tr>
                         <th scope="col">Leave Id:</th>
                         <th scope="col">Leave Type</th>
+                        
                         <th scope="col">Leave Status</th>
 
 
@@ -66,6 +69,7 @@ const LeaveStatus = () => {
                     
                             <td>{e.leaveid}</td>
                             <td>{e.leavetype}</td>
+                            
                             <td>{e.leavestatus}</td>
                     </tr>   
                 ))}     

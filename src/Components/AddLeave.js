@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import {useNavigate,useParams,useState} from 'react-router-dom';
+
+import {useNavigate,useParams} from 'react-router-dom';
 
 
 const AddLeave = () => {
@@ -53,9 +54,6 @@ const AddLeave = () => {
             .then(response => response.json())
             .then(response => {navigate(`/empdash/${id}`)});
             
-            
-            
-
     }
 
 
@@ -96,9 +94,14 @@ const AddLeave = () => {
 
                 <Form.Group style={{ paddingBottom: 15 }}>
                     <Form.Label>Enter leave type:</Form.Label>
-                    <Form.Control type="number"
-                         id="leavetype" onChange={handleChange("leavetype")} />
-                    
+                    <select id="leavetype" onChange={handleChange("leavetype")}>
+                        <option value="Medical">Medical </option>
+                        <option value="Vacation">Vacation</option>
+                        <option value="Emergency">Emergency</option>
+                        <option value="Maternity">Maternity</option>
+                        <option value="Paternity">Paternity</option>
+                        <option value="Exam ">exams leave</option>
+                    </select>
                 </Form.Group>
 
 
@@ -114,11 +117,9 @@ const AddLeave = () => {
 
 export default AddLeave;
 /*
-<Form.Select id="leave" defaultValue="Select the type" onChange={handleChange("leavetype")}>
-                        <option value="1">Medical </option>
-                        <option value="2">Vacation</option>
-                        <option value="3">Emergency</option>
-                        <option value="4">Maternity</option>
-                        <option value="5">Paternity</option>
-                        <option value="6">exams leave</option>
-                    </Form.Select>*/
+*/
+
+                   /* <Form.Control type="number"
+                         id="leavetype" onChange={handleChange("leavetype")} />*/
+                    
+               
